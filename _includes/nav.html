@@ -1,0 +1,15 @@
+<nav class="devo-nav navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header"><div class="logo"></div></div>
+    <ul class="nav navbar-nav">
+        <li {% if page.navtab == 'home' %}class="active"{% endif %}>
+           <a href="/">BIES Home<span class="sr-only">(current)</span></a></li>
+        <li {% if page.navtab == 'meetings' %}class="active"{% endif %}>
+           <a href="/Meetings">Meetings</a></li>
+        <li {% if page.navtab == 'FAQ' %}class="active"{% endif %}>
+           <a href="/FAQ">FAQ</a></li>
+        <li {% if page.navtab == 'resources' %}class="active"{% endif %}>
+           <a href="Resources">Resources</a></li>
+    </ul>
+  </div>
+</nav>

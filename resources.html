@@ -1,0 +1,18 @@
+---
+layout: default
+navtab: resources
+---
+
+
+<h1>Resources</h1>
+
+<h3>Groups</h3>
+<p>These Boston-area groups sponsor events and activities of interest to entrepreneurs
+in biomedical informatics</p>
+    {% for group in site.data.groups %}
+    <li class="tag"><a href="{{group.url}}">{{ group.name }}</a></li>
+    {% endfor %}
+
+<h3>Local companies</h3>
+
+

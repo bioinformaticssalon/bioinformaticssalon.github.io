@@ -1,0 +1,34 @@
+.dbmi-logo-block {
+  font-family: Ariel, sans-serif; 
+  text-transform: uppercase;
+  line-height: 1.0;
+  margin: 20px 0px;
+  padding: 6px;
+}
+
+.dbmi-logo {
+  display: inline-block;
+  margin: 0px;
+  border: none;
+  width: 204px;
+  height: 51px;
+  background: url("../pix/hms-logo.png") no-repeat;
+  background-size: contain;
+}
+
+.dbmi-label {
+  border-left: solid 2px #888;
+  padding-left: 12px;
+  margin: 0px;
+  margin-left: 12px;
+  display: inline-block;
+  padding-top: 4px;
+  vertical-align: top
+}
+
+.line1 {
+  font-size: 90%;
+}
+.line2 {
+  font-size: 180%;
+}

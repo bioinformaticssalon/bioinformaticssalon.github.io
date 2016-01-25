@@ -1,0 +1,30 @@
+- name: 'GSAS Harvard Biotechnology Club'
+  url: 'http://thebiotechclub.org/'
+  affiliation: Harvard
+- name: 'Tufts Biomedical Business Club'
+  affiliation: Tufts
+  url: 'http://tuftsbiotech.com'
+- name: 'Northeastern Biotech Entrepreneurs'
+  affiliation: Northeastern
+  url: 'http://www.northeastern.edu/bioentrepreneurs'
+- name: 'MIT Biotech Group'
+  affiliation: MIT
+  url: 'http://biotech.mit.edu'
+- name: 'Boston Biotech'
+  affiliation: 'Meetup.com'
+  url: 'http://www.meetup.com/BostonBiotech'
+- name: 'Bio Entrepreneurs Forum'
+  affiliation: 'Meetup.com'
+  url: 'http://www.meetup.com/Bio-Entrepreneurs-Forum'
+- name: 'Boston Computational Biology & Bioinformatics'
+  affiliation: 'Meetup.com'
+- name: 'Xconomy EXOME'
+  affiliation: Xconomy
+- name: 'Biotech Connection'
+  url: 'http://bostonbiotech.org'
+- name: 'Massachusetts Association of Technology Transfer Offices (MATTO)'
+- name: 'Massachusetts Technology Transfer Center (MATTC)'
+- name: 'Massachusetts Biotechnology Council (MassBio)'
+- name: 'Venture Cafe'
+
+
