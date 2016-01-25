@@ -18,13 +18,19 @@
   url: 'http://www.meetup.com/Bio-Entrepreneurs-Forum'
 - name: 'Boston Computational Biology & Bioinformatics'
   affiliation: 'Meetup.com'
+  url: 'http://www.meetup.com/Boston-Computational-Biology-and-Bioinformatics-Meetup'
 - name: 'Xconomy EXOME'
   affiliation: Xconomy
+  url: 'http://www.xconomy.com/life-sciences'
 - name: 'Biotech Connection'
   url: 'http://bostonbiotech.org'
 - name: 'Massachusetts Association of Technology Transfer Offices (MATTO)'
+  url: 'http://www.masstechtransfer.org'
 - name: 'Massachusetts Technology Transfer Center (MATTC)'
+  url: 'http://www.mttc.org/about-mattcenter/overview'
 - name: 'Massachusetts Biotechnology Council (MassBio)'
+  url: 'http://www.massbio.org'
 - name: 'Venture Cafe'
+  url: 'http://vencaf.org/about-boston'
 
 
