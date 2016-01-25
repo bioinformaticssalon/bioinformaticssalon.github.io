@@ -94,9 +94,11 @@ a {
     color: $brand-color;
     text-decoration: none;
 
+/** BIES
     &:visited {
         color: darken($brand-color, 15%);
     }
+*/
 
     &:hover {
         color: $text-color;
