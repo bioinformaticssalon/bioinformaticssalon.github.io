@@ -2,7 +2,7 @@
 layout: default
 navtab: resources
 title: Resources
-file_root: 'https://github.com/bioinformaticssalon/bioinformaticssalon.github.io'
+file_root: 'https://github.com/bioinformaticssalon/bioinformaticssalon.github.io/blob/master/_data/'
 ---
 
 
@@ -15,7 +15,9 @@ in biomedical informatics</p>
     {% for group in sorted_groups  %}
     <li class="tag"><a href="{{group.url}}">{{ group.name }}</a></li>
     {% endfor %}
-    <li class="data-source">Please update <a href="{{ page.file_root}}/blob/master/_data/groups.yml">this file</a>
+    {% capture url %}{{ page.file_root }}groups.yml{% endcapture %}
+    <li class="data-source">{% include minicon-github.html url=url name='github link'%}</li>
+
 
 <h3>Genomics data repositories</h3>
 <p>These public datasets contain petabytes of genomic data</p>
@@ -23,14 +25,13 @@ in biomedical informatics</p>
     {% for repo in sorted_repos  %}
     <li class="tag"><a href="{{repo.url}}">{{ repo.name }}</a></li>
     {% endfor %}
-    <li class="data-source">Please update <a href="{{ page.file_root}}/blob/master/_data/data_repos.yml">this file</a>
+    {% capture url %}{{ page.file_root }}data_repos.yml{% endcapture %}
+    <li class="data-source">{% include minicon-github.html url=url name='github link' %}</li>
 
 <h3>Please send us suggestions and updates!</h3>
-All the code and information on this site is kept
+<span class="icon icon--github">{% include icon-github.svg %}</span>: All the code and information on this site is kept
 on <a href="https://github.com/bioinformaticssalon/bioinformaticssalon.github.io">Github</a>.
 
-
-Please send us your suggestions and changes with
-a <a href="https://help.github.com/articles/using-pull-requests/">pull
-request</a>, or email them
+Please send us your suggestions and changes with a <a href="https://help.github.com/articles/using-pull-requests/">pull
+request</a> using the Github links (above), or email them
 to <a href="mailto:bies-admin@hms.harvard.edu">us</a>.
