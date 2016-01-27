@@ -27,6 +27,16 @@
   background-color: #EEE;
 }
 
+li.resource-tag {
+  list-style: none;
+  margin-bottom: 4px;
+}
+
+li.resource-tag:before {
+    content: "•  ";
+    color: #AAA;
+}
+
 li.data-source {
   margin-top: 7px;
   list-style-type: none;

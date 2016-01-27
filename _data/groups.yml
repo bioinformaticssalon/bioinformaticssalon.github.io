@@ -30,7 +30,8 @@
   url: 'http://www.mttc.org/about-mattcenter/overview'
 - name: 'Massachusetts Biotechnology Council (MassBio)'
   url: 'http://www.massbio.org'
-- name: 'Venture Cafe'
+- name: 'Venture Caf&eacute;'
   url: 'http://vencaf.org/about-boston'
+  affiliation: 'Venture Caf&eacute; Foundation'
 
 

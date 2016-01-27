@@ -16,4 +16,16 @@
 - name: 'ICGC Cancer Genome Projects'
   url: 'https://icgc.org/'
   affiliation: 'International Cancer Genome Consortium'
+- name: Exome Aggregation Consortium (ExAC)
+  url: 'http://exac.broadinstitute.org'
+  affiliation: 'Broad Institute'
+- name: 'Array Express'
+  url: 'https://www.ebi.ac.uk/arrayexpress/'
+  affiliation: 'European Bioinformatics Institute - EMBL'
+- name: 'NHLBI GO Exome Sequencing Project (ESP)'
+  url: 'http://evs.gs.washington.edu/EVS'
+  affiliation: 'National Heart, Lung, and Blood Institute'
+- name: 'Database of Genotypes and Phenotypes (dbGaP)'
+  url: 'http://www.ncbi.nlm.nih.gov/gap'
+  affiliation: 'NIH National Center for Biotechnology Information'
 
