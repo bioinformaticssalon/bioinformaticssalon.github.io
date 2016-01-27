@@ -13,4 +13,7 @@
 - name: 'Complete Genomics'
   url: 'http://www.completegenomics.com/public-data/cancer-data/'
   affiliation: 'BGI-Shenzhen'
+- name: 'ICGC Cancer Genome Projects'
+  url: 'https://icgc.org/'
+  affiliation: 'International Cancer Genome Consortium'
 

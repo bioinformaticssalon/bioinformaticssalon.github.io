@@ -16,7 +16,7 @@ in biomedical informatics</p>
     <li class="tag"><a href="{{group.url}}">{{ group.name }}</a></li>
     {% endfor %}
     {% capture url %}{{ page.file_root }}groups.yml{% endcapture %}
-    <li class="data-source">{% include minicon-github.html url=url name='github link'%}</li>
+    <li class="data-source">{% include minicon-github.html url=url name='github'%}</li>
 
 
 <h3>Genomics data repositories</h3>
@@ -26,12 +26,12 @@ in biomedical informatics</p>
     <li class="tag"><a href="{{repo.url}}">{{ repo.name }}</a></li>
     {% endfor %}
     {% capture url %}{{ page.file_root }}data_repos.yml{% endcapture %}
-    <li class="data-source">{% include minicon-github.html url=url name='github link' %}</li>
+    <li class="data-source">{% include minicon-github.html url=url name='github' %}</li>
 
 <h3>Please send us suggestions and updates!</h3>
-<span class="icon icon--github">{% include icon-github.svg %}</span>: All the code and information on this site is kept
-on <a href="https://github.com/bioinformaticssalon/bioinformaticssalon.github.io">Github</a>.
+<p>All the code and information on this site is kept
+on <a href="https://github.com/bioinformaticssalon/bioinformaticssalon.github.io">Github</a>.</p>
 
-Please send us your suggestions and changes with a <a href="https://help.github.com/articles/using-pull-requests/">pull
+<P><span class="icon icon--github">{% include icon-github.svg %}</span>: Please send us your suggestions and changes with a <a href="https://help.github.com/articles/using-pull-requests/">pull
 request</a> using the Github links (above), or email them
-to <a href="mailto:bies-admin@hms.harvard.edu">us</a>.
+to <a href="mailto:bies-admin@hms.harvard.edu">us</a>.</P>
