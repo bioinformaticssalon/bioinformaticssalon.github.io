@@ -2,6 +2,7 @@
 layout: default
 navtab: resources
 title: Resources
+file_root: 'https://github.com/bioinformaticssalon/bioinformaticssalon.github.io'
 ---
 
 
@@ -14,12 +15,21 @@ in biomedical informatics</p>
     {% for group in sorted_groups  %}
     <li class="tag"><a href="{{group.url}}">{{ group.name }}</a></li>
     {% endfor %}
+    <li class="data-source">Please update <a href="{{ page.file_root}}/blob/master/_data/groups.yml">this file</a>
+
+<h3>Genomics data repositories</h3>
+<p>These public datasets contain petabytes of genomic data</p>
+    {% assign sorted_repos = (site.data.data_repos | sort: 'name') %}
+    {% for repo in sorted_repos  %}
+    <li class="tag"><a href="{{repo.url}}">{{ repo.name }}</a></li>
+    {% endfor %}
+    <li class="data-source">Please update <a href="{{ page.file_root}}/blob/master/_data/data_repos.yml">this file</a>
 
 <h3>Please send us suggestions and updates!</h3>
 All the code and information on this site is kept
 on <a href="https://github.com/bioinformaticssalon/bioinformaticssalon.github.io">Github</a>.
 
-Specifically, the groups on this page are in <a href="https://github.com/bioinformaticssalon/bioinformaticssalon.github.io/blob/master/_data/groups.yml">this file</a>, to make it easier to update.
+
 Please send us your suggestions and changes with
 a <a href="https://help.github.com/articles/using-pull-requests/">pull
 request</a>, or email them
