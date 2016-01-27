@@ -1,9 +1,12 @@
 $(document).ready(init_page);
 
 function init_page(){
-  console.log('foo');
   $('.otd-logo').click(function(){visit_page('http://otd.harvard.edu');});
   $('.dbmi-logo-block').click(function(){visit_page('http://dbmi.hms.harvard.edu');});
+  $('.signup .frame1 .btn').click(signup_frame2);
+  $('.signup .frame2 .btn.cancel').click(signup_frame1);
+  $('.signup .frame2 .btn.addme').click(signup_frame3);
+  $('.signup .frame3 .btn.ok').click(signup_frame1);
   init_dna();
 }
 
@@ -24,4 +27,27 @@ function init_dna(){
   }
   var dna = document.getElementById('dna');
   dna.appendChild(frag);
+}
+
+// signup form on meetings.html page
+
+function signup_frame1(){
+  $('.signup .frame1').show(200);
+  $('.signup .frame2').hide(200);
+  $('.signup .frame3').hide(200);
+  return false;
+}
+
+function signup_frame2(){
+  $('.signup .frame1').hide(200);
+  $('.signup .frame2').show(200);
+  $('.signup .frame3').hide(200);
+  return false;
+}
+
+function signup_frame3(){
+  $('.signup .frame1').hide(200);
+  $('.signup .frame2').hide(200);
+  $('.signup .frame3').show(200);
+  return false;
 }

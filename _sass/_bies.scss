@@ -1,3 +1,11 @@
+footer {
+ margin-top: 2em;
+}
+
+/* --------------------------------------------------------
+   header: DNA banner (random ATGC letters)
+ */
+/* monospace typewriter font */
 @import url(https://fonts.googleapis.com/css?family=Cutive+Mono);
 
 .dna {
@@ -17,6 +25,7 @@
   color: #880;
 }
 
+/* sponsor logos */
 .otd-logo {
   padding: 6px;
   width: 310px;
@@ -27,6 +36,7 @@
   background-color: #EEE;
 }
 
+/* resources page */
 li.resource-tag {
   list-style: none;
   margin-bottom: 4px;
@@ -44,6 +54,12 @@ li.data-source {
   font-style: italic;
 }
 
-footer {
- margin-top: 2em;
+/* signup form on meetings page */
+
+.signup .frame2, .signup .frame3 {
+  display: none
+}
+
+.signup .frame3 button.ok {
+  margin-top: 2em;
 }
