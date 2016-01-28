@@ -71,10 +71,18 @@ Nearest T stop: Brigham Circle (Green Line "E")
 </form>
 </div>
 
-<div class="frame3 alert alert-success">
+<div class="frame3">
+  <script>var ADMIN_EMAIL="{{ site.admin_email }}";</script>
+  <div class="success alert alert-success">
   <span class="glyphicon glyphicon-ok"></span>
-  <P>Thanks for signing up!<br/> (psych! dummy code - we didn't really sign you up yet)</P>
+  <P>Thanks for signing up!</P>
   <button class="ok btn btn-default" role="button">OK</button>
+  </div>
+  <div class="fail alert alert-warning">
+  <span class="glyphicon glyphicon-thumbs-down"></span>
+  <P>Oops, there was a problem. The reason is: <div class="reason"></div></P>
+  <button class="ok btn btn-default" role="button">OK</button>
+  </div>
 </div>
 
 </div>

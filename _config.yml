@@ -8,6 +8,7 @@
 # Site settings
 title: Biomedical Informatics Entrepreneurs Salon
 email: bies-info@hms.harvard.edu
+admin_email: bies-admin@hms.harvard.edu
 description: > # this means to ignore newlines until "baseurl:"
   To promote entrepreneurship at the convergence of biology, medicine, and computing.
   We hold monthly meetups at Harvard Medical School, Boston, MA
