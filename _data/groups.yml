@@ -33,5 +33,7 @@
 - name: 'Venture Caf&eacute;'
   url: 'http://vencaf.org/about-boston'
   affiliation: 'Venture Caf&eacute; Foundation'
-
+- name: 'MD Idea Lab'
+  url: 'http://mdidealab.com/'
+  affiliation: 'UMass Boston'
 
