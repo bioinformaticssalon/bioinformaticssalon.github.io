@@ -14,7 +14,15 @@ in biomedical informatics</p>
     {% assign sorted_groups = (site.data.groups | sort: 'name') %}
     {% for group in sorted_groups  %}
     <li class="resource-tag"><a href="{{group.url}}">{{ group.name }}</a>
-    {% if group.affiliation %} - {{ group.affiliation }}{% endif %}</li>
+    {% if group.affiliation %} - {{ group.affiliation }}{% endif %}
+{% comment %}
+    {% if group.tags %}
+     {% for tag in group.tags %}
+     <span class="tag">{{ tag }}</span>
+     {% endfor %}
+    {% endif %}
+{% endcomment %}
+</li>
     {% endfor %}
     {% capture url %}{{ page.file_root }}groups.yml{% endcapture %}
     <li class="data-source">{% include minicon-github.html url=url name='github'%}</li>

@@ -1,27 +1,35 @@
 - name: 'GSAS Harvard Biotechnology Club'
   url: 'http://thebiotechclub.org/'
   affiliation: Harvard
+  tags: [academic]
 - name: 'Tufts Biomedical Business Club'
   affiliation: Tufts
   url: 'http://tuftsbiotech.com'
+  tags: [academic]
 - name: 'Northeastern Biotech Entrepreneurs'
   affiliation: Northeastern
   url: 'http://www.northeastern.edu/bioentrepreneurs'
+  tags: [academic]
 - name: 'MIT Biotech Group'
   affiliation: MIT
   url: 'http://biotech.mit.edu'
+  tags: [academic]
 - name: 'Boston Biotech'
   affiliation: 'Meetup.com'
   url: 'http://www.meetup.com/BostonBiotech'
+  tags: [meetup]
 - name: 'Bio Entrepreneurs Forum'
   affiliation: 'Meetup.com'
   url: 'http://www.meetup.com/Bio-Entrepreneurs-Forum'
+  tags: [meetup]
 - name: 'Boston Computational Biology & Bioinformatics'
   affiliation: 'Meetup.com'
   url: 'http://www.meetup.com/Boston-Computational-Biology-and-Bioinformatics-Meetup'
+  tags: [meetup]
 - name: 'Xconomy EXOME'
   affiliation: Xconomy
   url: 'http://www.xconomy.com/life-sciences'
+  tags: [media]
 - name: 'Biotech Connection'
   url: 'http://bostonbiotech.org'
 - name: 'Massachusetts Association of Technology Transfer Offices (MATTO)'
@@ -30,10 +38,24 @@
   url: 'http://www.mttc.org/about-mattcenter/overview'
 - name: 'Massachusetts Biotechnology Council (MassBio)'
   url: 'http://www.massbio.org'
+  tags: [industry]
 - name: 'Venture Caf&eacute;'
   url: 'http://vencaf.org/about-boston'
   affiliation: 'Venture Caf&eacute; Foundation'
 - name: 'MD Idea Lab'
   url: 'http://mdidealab.com/'
   affiliation: 'UMass Boston'
+  tags: [academic]
+- name: 'Brigham Innovation Hub (iHub)'
+  url: http://disruptingmedicine.org/
+  affiliation: "Brigham & Woman's Hospital"
+  tags: [hospital]
+- name: 'Innovation & Digital Health Accelerator (IDHA)'
+  url: 'http://www.childrenshospital.org/research-and-innovation/innovation'
+  affiliation: Boston Childrens Hospital
+  tags: [hospital]
+- name: 'More Disruption Please (MDP) Accelerator'
+  url: http://www.athenahealth.com/cmp/more-disruption/accelerator.php
+  affiliation: 'AthenaHealth'
+  tags: [industry]
 
