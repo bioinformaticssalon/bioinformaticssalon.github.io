@@ -98,3 +98,65 @@ function callback(result){
   var escaped = $("<div>").text(result.result).html();
   signup_frame3(escaped);
 }
+
+//-------------------
+// Calendar
+
+$(document).ready(get_calendar);
+
+var CALENDAR = 'https://calendar.google.com/calendar/embed?src=strassmann.com_6m8slnmov4rqo0el43ftq7ha64%40group.calendar.google.com&ctz=America/New_York';
+
+var CAL_ID = 'strassmann.com_6m8slnmov4rqo0el43ftq7ha64@group.calendar.google.com';
+var KEY = 'AIzaSyCVQOLsT_TfacT9ze5zwQ5ahhA96fxWJPk';
+var CAL_URL = 'https://www.googleapis.com/calendar/v3/calendars/'+CAL_ID+'/events?key='+KEY;
+
+function get_calendar(){
+  if ($('.events').length){
+    $.ajax({url: CAL_URL, success: show_calendar});
+  } else {
+    console.log('nope');
+  }
+}
+
+function show_calendar(result){
+  var items = result.items;
+  for (var i in items){
+    var item = items[i];
+    item.date_exp = create_date_exp(item);
+  }
+  items.sort(function(a,b){return a.date_exp.date - b.date_exp.date;});
+  for (var j in items){
+    var item = items[j];
+    var title = item.summary;
+    var ymd = item.date_exp.ymd;
+    var yyyymmdd = ymd[0]+ymd[1]+ymd[2];
+    var start = render_date(ymd);
+    var link = CALENDAR+'&mode=month&dates='+yyyymmdd+'%2F'+yyyymmdd;
+    var box = $('<div/>').addClass('event').append(start).append($('<a/>', {href: link}).text(title));
+    $('.events').append(box);
+  }
+}
+
+function pad(n) {
+  return (n < 10) ? ("0" + n) : n.toString();
+}
+
+function create_date_exp(item){
+  var start = item.start;
+  if (start.date){
+    var ymd = start.date.split('-');
+    var d = new Date(ymd[0], ymd[1]-1, ymd[2]);
+    return {ymd: ymd, date: d};
+  } else {
+    var d = new Date(Date.parse(start.dateTime));
+    var ymd = [d.getFullYear().toString(), pad(1+d.getMonth()), pad(d.getDate())];
+    var hm = [d.getHours(), d.getMinutes()];
+    return {ymd: ymd, hm: hm, date: d};
+  }
+}
+
+
+function render_date(ymd){
+  var box = $('<div/>').text(ymd[1]+'/'+ymd[2]);
+  return box;
+}
