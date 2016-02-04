@@ -104,11 +104,48 @@ function callback(result){
 
 $(document).ready(get_calendar);
 
-var CALENDAR = 'https://calendar.google.com/calendar/embed?src=strassmann.com_6m8slnmov4rqo0el43ftq7ha64%40group.calendar.google.com&ctz=America/New_York';
 
 var CAL_ID = 'strassmann.com_6m8slnmov4rqo0el43ftq7ha64@group.calendar.google.com';
 var KEY = 'AIzaSyCVQOLsT_TfacT9ze5zwQ5ahhA96fxWJPk';
 var CAL_URL = 'https://www.googleapis.com/calendar/v3/calendars/'+CAL_ID+'/events?key='+KEY;
+var CALENDAR = 'https://calendar.google.com/calendar/embed?src='+CAL_ID+'&ctz=America/New_York';
+var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+
+var CLIENT_ID = '179551750856-ddvff9omvljv5v7t94v4qnta340j8f7c.apps.googleusercontent.com';
+
+
+function checkAuth(){
+  console.log('checkAuth');
+  gapi.auth.authorize({ 'client_id': CLIENT_ID,
+			'scope': SCOPES.join(' '),
+			'immediate': true
+			  },
+		      handleAuthResult);
+}
+
+function handleAuthResult(authResult){
+  console.log('handleAuthResult');
+  var authorizeDiv = document.getElementById('authorize-div');
+  console.log(authResult, authorizeDiv);
+  gapi.client.load('calendar', 'v3', load_events);
+}
+
+function load_events()  {
+  console.log(gapi.client);
+  var request = gapi.client.calendar.events.list({
+    'calendarId': CAL_ID,
+    'timeMin': (new Date()).toISOString(),
+    'showDeleted': false,
+    'singleEvents': true,
+    'maxResults': 10,
+    'orderBy': 'startTime'
+    });
+    request.execute(function(resp){
+		      var events = resp.items;
+		      console.log('items', events);
+		    });
+}
+
 
 function get_calendar(){
   if ($('.events').length){
@@ -133,6 +170,7 @@ function show_calendar(result){
     var start = render_date(ymd);
     var link = CALENDAR+'&mode=month&dates='+yyyymmdd+'%2F'+yyyymmdd;
     var box = $('<div/>').addClass('event').append(start).append($('<a/>', {href: link}).text(title));
+    box.append();
     $('.events').append(box);
   }
 }
@@ -155,8 +193,9 @@ function create_date_exp(item){
   }
 }
 
-
+var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 function render_date(ymd){
-  var box = $('<div/>').text(ymd[1]+'/'+ymd[2]);
+  var box = $('<div/>').addClass('calendar_box').append($('<div/>').addClass('upper').text(MONTHS[parseInt(ymd[1])-1]),
+							$('<div/>').addClass('lower').text(ymd[2]));
   return box;
 }

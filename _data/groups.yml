@@ -39,6 +39,10 @@
 - name: 'Massachusetts Biotechnology Council (MassBio)'
   url: 'http://www.massbio.org'
   tags: [industry]
+- name: 'MassCONNECT'
+  url: 'http://www.massbio.org/innovation/massconnect'
+  affiliation: 'MassBio'
+  tags: [industry]
 - name: 'Venture Caf&eacute;'
   url: 'http://vencaf.org/about-boston'
   affiliation: 'Venture Caf&eacute; Foundation'
@@ -64,5 +68,9 @@
 - name: Hacking Medicine
   url: http://hackingmedicine.mit.edu/
   affiliation: MIT
+- name: MedTech Boston
+  url: http://MedTechBoston.com
+  affiliation: Medstro
+  tags: [media]
 
 
