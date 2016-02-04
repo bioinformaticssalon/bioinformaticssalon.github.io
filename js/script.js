@@ -162,8 +162,12 @@ function show_calendar(result){
     item.date_exp = create_date_exp(item);
   }
   items.sort(function(a,b){return a.date_exp.date - b.date_exp.date;});
+  var now = new Date();
   for (var j in items){
     var item = items[j];
+    if (item.date_exp.date < now){
+      continue;
+    }
     var title = item.summary;
     var ymd = item.date_exp.ymd;
     var yyyymmdd = ymd[0]+ymd[1]+ymd[2];
@@ -194,8 +198,11 @@ function create_date_exp(item){
 }
 
 var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 function render_date(ymd){
-  var box = $('<div/>').addClass('calendar_box').append($('<div/>').addClass('upper').text(MONTHS[parseInt(ymd[1])-1]),
-							$('<div/>').addClass('lower').text(ymd[2]));
+  var day = parseInt(ymd[2]);
+  var month = MONTHS[parseInt(ymd[1])-1];
+  var box = $('<div/>').addClass('calendar_box').append($('<div/>').addClass('upper').text(month),
+							$('<div/>').addClass('lower').text(day));
   return box;
 }
