@@ -7,7 +7,6 @@ function init_page(){
   $('.signup .frame2 .btn.cancel').click(signup_frame1);
   $('.signup .frame2 .btn.addme').click(on_submit);
   $('.signup .frame3 .btn.ok').click(signup_frame1);
-  $('body').click(unclick_cal_event);
   init_dna();
 }
 
