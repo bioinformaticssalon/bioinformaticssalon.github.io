@@ -7,6 +7,7 @@ function init_page(){
   $('.signup .frame2 .btn.cancel').click(signup_frame1);
   $('.signup .frame2 .btn.addme').click(on_submit);
   $('.signup .frame3 .btn.ok').click(signup_frame1);
+  $('body').click(unclick_cal_event);
   init_dna();
 }
 
@@ -104,105 +105,161 @@ function callback(result){
 
 $(document).ready(get_calendar);
 
-
-var CAL_ID = 'strassmann.com_6m8slnmov4rqo0el43ftq7ha64@group.calendar.google.com';
+var CAL_ID = 'bv777tm2f6k9tim5m9k7jqprak@group.calendar.google.com';
 var KEY = 'AIzaSyCVQOLsT_TfacT9ze5zwQ5ahhA96fxWJPk';
 var CAL_URL = 'https://www.googleapis.com/calendar/v3/calendars/'+CAL_ID+'/events?key='+KEY;
 var CALENDAR = 'https://calendar.google.com/calendar/embed?src='+CAL_ID+'&ctz=America/New_York';
 var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 
-var CLIENT_ID = '179551750856-ddvff9omvljv5v7t94v4qnta340j8f7c.apps.googleusercontent.com';
 
-
-function checkAuth(){
-  console.log('checkAuth');
-  gapi.auth.authorize({ 'client_id': CLIENT_ID,
-			'scope': SCOPES.join(' '),
-			'immediate': true
-			  },
-		      handleAuthResult);
-}
-
-function handleAuthResult(authResult){
-  console.log('handleAuthResult');
-  var authorizeDiv = document.getElementById('authorize-div');
-  console.log(authResult, authorizeDiv);
-  gapi.client.load('calendar', 'v3', load_events);
-}
-
-function load_events()  {
-  console.log(gapi.client);
-  var request = gapi.client.calendar.events.list({
-    'calendarId': CAL_ID,
-    'timeMin': (new Date()).toISOString(),
-    'showDeleted': false,
-    'singleEvents': true,
-    'maxResults': 10,
-    'orderBy': 'startTime'
-    });
-    request.execute(function(resp){
-		      var events = resp.items;
-		      console.log('items', events);
-		    });
-}
-
-
+// Only get calendar if page has a <div class="events"/>
 function get_calendar(){
   if ($('.events').length){
-    $.ajax({url: CAL_URL, success: show_calendar});
+    $.ajax({url: CAL_URL, success: expand_instances});
   } else {
-    console.log('nope');
+    console.log('nope'); // Page doesn't need any events, so don't fetch any.
   }
 }
 
-function show_calendar(result){
-  var items = result.items;
-  for (var i in items){
-    var item = items[i];
-    item.date_exp = create_date_exp(item);
-  }
-  items.sort(function(a,b){return a.date_exp.date - b.date_exp.date;});
-  var now = new Date();
-  for (var j in items){
-    var item = items[j];
-    if (item.date_exp.date < now){
-      continue;
+// Result contains GoogleCal Events. An event may contain repeats.
+// https://developers.google.com/google-apps/calendar/v3/reference/events
+// Runs asynchronously.
+// For each recurring event, fires an ajax call to expand it into instances.
+function expand_instances(result){
+  var events = result.items;
+  var all_events = []; // will hold instances of recurring events
+  var ajaxes = [];     // will hold all pending expansions
+  for (var i in events){
+    var event = events[i];
+    if (event.recurrence != undefined){
+      // if recurring, go expand them
+      ajaxes.push(get_instances(event, function(i){all_events.push(i);}));
+    } else {
+      all_events.push(event);
     }
-    var title = item.summary;
-    var ymd = item.date_exp.ymd;
-    var yyyymmdd = ymd[0]+ymd[1]+ymd[2];
-    var start = render_date(ymd);
-    var link = CALENDAR+'&mode=month&dates='+yyyymmdd+'%2F'+yyyymmdd;
-    var box = $('<div/>').addClass('event').append(start).append($('<a/>', {href: link}).text(title));
-    box.append();
-    $('.events').append(box);
+  }
+  // When all ajaxes are completed, then you can safely process the all_events list.
+  $.when.apply(this, ajaxes).done(function(){ show_events(all_events);});
+}
+
+// Expand event into its instances, then call done_fcn on them.
+function get_instances(event, done_fcn){
+  var url = 'https://www.googleapis.com/calendar/v3/calendars/' + CAL_ID + '/events/' + event.id + '/instances?key='+KEY;
+  return $.ajax({url: url, success: function(resp){capture_instances(resp, done_fcn);}});
+}
+
+// done_fcn pushes the captured instances onto all_events.
+function capture_instances(resp, done_fcn){
+  for (var i in resp.items){
+    var instance = resp.items[i];
+    done_fcn(instance);
   }
 }
 
-function pad(n) {
-  return (n < 10) ? ("0" + n) : n.toString();
+// sort and prepare events, then add them to page's <div class="events">
+function show_events(raw_events){
+  var events = filter_events(raw_events);
+  for (var e in events){
+    var event = events[e];
+    var html = render_event(event);
+    $('.events').append(html);
+  }
 }
 
-function create_date_exp(item){
-  var start = item.start;
-  if (start.date){
-    var ymd = start.date.split('-');
-    var d = new Date(ymd[0], ymd[1]-1, ymd[2]);
-    return {ymd: ymd, date: d};
+// returns sorted list of future events
+function filter_events(events){
+  var result = [];
+  for (var e in events){
+    var event = events[e];
+    var start = event.start.date;
+    if (start == undefined){
+      event.allDay = false;
+      event.sortDate = new Date(event.start.dateTime);
+    } else {
+      event.allDay = true;
+      var ymd = start.split('-');
+      event.sortDate = new Date(ymd[0], ymd[1]-1, ymd[2]);
+    }
+    events.sort(function(a,b){return a.sortDate - b.sortDate;});
+  }
+  var now = new Date();
+  for (var ee in events){
+    var event = events[ee];
+    if (event.sortDate > now){  // Exclude past events
+      result.push(event);
+    }
+  }
+  return result;
+}
+
+// render event to html
+
+function render_event(event){
+  var box = $('<div/>').addClass('event')
+                       .append(render_date(event.sortDate), event.summary)
+		       .click(click_cal_event)
+                       .hover(show_cal_details, hide_cal_details);
+
+  if (!event.allDay){
+    box.append(render_event_time(event));
+  }
+  return box;
+}
+
+function render_event_time(event){
+  var start = new Date(event.start.dateTime);
+  var end = new Date(event.end.dateTime);
+  return $('<span/>').addClass('time').text(render_time(start)+'-'+render_time(end));
+}
+
+function render_time(t){
+  var h = t.getHours();
+  if (h > 12){
+    h = h-12;
+    return h+':'+t.getMinutes()+'pm';
   } else {
-    var d = new Date(Date.parse(start.dateTime));
-    var ymd = [d.getFullYear().toString(), pad(1+d.getMonth()), pad(d.getDate())];
-    var hm = [d.getHours(), d.getMinutes()];
-    return {ymd: ymd, hm: hm, date: d};
+    return h+':'+t.getMinutes()+'am';
   }
 }
 
 var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-function render_date(ymd){
-  var day = parseInt(ymd[2]);
-  var month = MONTHS[parseInt(ymd[1])-1];
+function render_date(date){
+  var day = date.getDate();
+  var month = MONTHS[date.getMonth()];
   var box = $('<div/>').addClass('calendar_box').append($('<div/>').addClass('upper').text(month),
 							$('<div/>').addClass('lower').text(day));
   return box;
+}
+
+function click_cal_event(e){
+  unclick_cal_event();
+  var event = e.target;
+  $(event).data('sticky', true);
+  show_cal_details(e);
+  return false;
+}
+
+function unclick_cal_event(e){
+  if (e == undefined){
+    var t = 'undefined';
+  } else{
+    var t = e.target;
+  }
+  $('.event').removeData('sticky');
+  hide_cal_details(e);
+  return false;
+}
+
+function show_cal_details(e){
+  var event = e.target;
+  $(event).addClass('selected');
+  $('.details').css({top: event.offsetTop, left: event.offsetLeft + event.offsetWidth}).show();
+}
+
+function hide_cal_details(e){
+  if (e == undefined || !$(e.target).data('sticky')){
+    $('.event').removeClass('selected');
+    $('.details').hide();
+  }
 }

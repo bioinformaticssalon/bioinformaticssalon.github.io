@@ -62,7 +62,7 @@
   url: http://www.athenahealth.com/cmp/more-disruption/accelerator.php
   affiliation: 'AthenaHealth'
   tags: [industry]
-- name: Boston Biomedical Innovation Center
+- name: Boston Biomedical Innovation Center (B-BIC)
   url: http://b-bic.org
   affiliation: National Insitutes of Health (NIH)
 - name: Hacking Medicine
@@ -72,5 +72,10 @@
   url: http://MedTechBoston.com
   affiliation: Medstro
   tags: [media]
+- name: Blavatnik Biomedical Accelerator
+  url: http://otd.harvard.edu/accelerators/blavatnik-biomedical-accelerator/
+  affiliation: Harvard
+  tags: [academic]
+
 
 
