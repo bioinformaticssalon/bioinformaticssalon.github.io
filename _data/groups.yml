@@ -26,16 +26,23 @@
   affiliation: 'Meetup.com'
   url: 'http://www.meetup.com/Boston-Computational-Biology-and-Bioinformatics-Meetup'
   tags: [meetup]
+- name: Boston Health Technology Meedup (ReDX)
+  affiliation: 'Meetup.com'
+  url: 'http://www.meetup.com/ReDX-The-Boston-Health-Technology-Meetup'
+  tags: [meetup]
 - name: 'Xconomy EXOME'
   affiliation: Xconomy
   url: 'http://www.xconomy.com/life-sciences'
   tags: [media]
 - name: 'Biotech Connection'
   url: 'http://bostonbiotech.org'
+  tags: [academic]
 - name: 'Massachusetts Association of Technology Transfer Offices (MATTO)'
   url: 'http://www.masstechtransfer.org'
+  tags: [academic]
 - name: 'Massachusetts Technology Transfer Center (MATTC)'
   url: 'http://www.mttc.org/about-mattcenter/overview'
+  tags: [academic]
 - name: 'Massachusetts Biotechnology Council (MassBio)'
   url: 'http://www.massbio.org'
   tags: [industry]
@@ -46,6 +53,7 @@
 - name: 'Venture Caf&eacute;'
   url: 'http://vencaf.org/about-boston'
   affiliation: 'Venture Caf&eacute; Foundation'
+  tags: [meetup]
 - name: 'MD Idea Lab'
   url: 'http://mdidealab.com/'
   affiliation: 'UMass Boston'
@@ -65,9 +73,11 @@
 - name: Boston Biomedical Innovation Center (B-BIC)
   url: http://b-bic.org
   affiliation: National Insitutes of Health (NIH)
+  tags: [academic]
 - name: Hacking Medicine
   url: http://hackingmedicine.mit.edu/
   affiliation: MIT
+  tags: [academic]
 - name: MedTech Boston
   url: http://MedTechBoston.com
   affiliation: Medstro
@@ -76,6 +86,11 @@
   url: http://otd.harvard.edu/accelerators/blavatnik-biomedical-accelerator/
   affiliation: Harvard
   tags: [academic]
+- name: Johnson & Johnson Innovation Center
+  affiliation: Johnson & Johnson
+  url: http://www.jnjinnovation.com/team#boston-team
+  tags: [industry]
+
 
 
 

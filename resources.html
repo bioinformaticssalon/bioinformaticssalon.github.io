@@ -11,18 +11,30 @@ file_root: 'https://github.com/bioinformaticssalon/bioinformaticssalon.github.io
 <h3>Other local groups</h3>
 <p>These Boston-area groups sponsor events and activities of interest to entrepreneurs
 in biomedical informatics</p>
+    {% for group in site.data.groups %}
+       {% if group.tags == nil %}
+        <li style="color: red"> ERROR: Missing tags for {{ group.name }}</li>
+       {% endif %}
+       {% assign found = false %}
+       {% for tag in site.data.group_tags %}
+          {% if group.tags contains tag.tag %}
+          {% assign found = true %}
+          {% endif %}
+       {% endfor %}
+       {% if found == false %}
+        <li style="color: red"> ERROR: Unrecognized tags for {{ group.name }}: [{{ group.tags | join: ', '  }}]</li>
+       {% endif %}
+    {% endfor %}
     {% assign sorted_groups = (site.data.groups | sort: 'name') %}
-    {% for group in sorted_groups  %}
-    <li class="resource-tag"><a href="{{group.url}}">{{ group.name }}</a>
-    {% if group.affiliation %} - {{ group.affiliation }}{% endif %}
-{% comment %}
-    {% if group.tags %}
-     {% for tag in group.tags %}
-     <span class="tag">{{ tag }}</span>
-     {% endfor %}
-    {% endif %}
-{% endcomment %}
-</li>
+    {% for tag in site.data.group_tags %}
+       <h5>{{ tag.label }} groups</h5>
+      {% for group in sorted_groups %}
+         {% if group.tags contains tag.tag %}
+            <li class="resource-tag"><a href="{{group.url}}">{{ group.name }}</a>
+              {% if group.affiliation %} - {{ group.affiliation }}{% endif %}
+            </li>
+         {% endif %}
+      {% endfor %}
     {% endfor %}
     {% capture url %}{{ page.file_root }}groups.yml{% endcapture %}
     <li class="data-source">{% include minicon-github.html url=url name='github'%}</li>

@@ -1,0 +1,10 @@
+- tag: academic
+  label: Academic, nonprofit, and government
+- tag: industry
+  label: Industrial
+- tag: hospital
+  label: Hospital
+- tag: media
+  label: Media
+- tag: meetup
+  label: Meetup
