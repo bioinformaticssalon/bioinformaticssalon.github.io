@@ -1,0 +1,19 @@
+---
+layout: default
+navtab: resources
+title: Resources
+file_root: 'https://github.com/bioinformaticssalon/bioinformaticssalon.github.io/blob/master/_data/'
+---
+
+<h1>Genomics data repositories</h1>
+<p>These public datasets contain petabytes of genomic data</p>
+    {% assign sorted_repos = (site.data.data_repos | sort: 'name') %}
+    {% for repo in sorted_repos  %}
+    <li class="resource-tag"><a href="{{repo.url}}">{{ repo.name }}</a>
+    {% if repo.affiliation %} - {{ repo.affiliation }}{% endif %}</li>
+    {% endfor %}
+    {% capture url %}{{ page.file_root }}data_repos.yml{% endcapture %}
+    <li class="data-source">{% include minicon-github.html url=url name='github' %}</li>
+
+{% include call_for_comment.html %}
+

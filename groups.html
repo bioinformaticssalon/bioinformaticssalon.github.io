@@ -1,14 +1,11 @@
 ---
 layout: default
-navtab: resources
-title: Resources
+navtab: groups
+title: Groups
 file_root: 'https://github.com/bioinformaticssalon/bioinformaticssalon.github.io/blob/master/_data/'
 ---
 
-
-<h1>Resources</h1>
-
-<h3>Other local groups</h3>
+<h1>Other local groups</h1>
 <p>These Boston-area groups sponsor events and activities of interest to entrepreneurs
 in biomedical informatics</p>
     {% for group in site.data.groups %}
@@ -40,20 +37,4 @@ in biomedical informatics</p>
     <li class="data-source">{% include minicon-github.html url=url name='github'%}</li>
 
 
-<h3>Genomics data repositories</h3>
-<p>These public datasets contain petabytes of genomic data</p>
-    {% assign sorted_repos = (site.data.data_repos | sort: 'name') %}
-    {% for repo in sorted_repos  %}
-    <li class="resource-tag"><a href="{{repo.url}}">{{ repo.name }}</a>
-    {% if repo.affiliation %} - {{ repo.affiliation }}{% endif %}</li>
-    {% endfor %}
-    {% capture url %}{{ page.file_root }}data_repos.yml{% endcapture %}
-    <li class="data-source">{% include minicon-github.html url=url name='github' %}</li>
-
-<h3>Please send us suggestions and updates!</h3>
-<p>All the code and information on this site is kept
-on <a href="https://github.com/bioinformaticssalon/bioinformaticssalon.github.io">Github</a>.</p>
-
-<P><span class="icon icon--github">{% include icon-github.svg %}</span>: Please send us your suggestions and changes with a <a href="https://help.github.com/articles/using-pull-requests/">pull
-request</a> using the Github links (above), or email them
-to <a href="mailto:{{ site.admin_email }}">us</a>.</P>
+{% include call_for_comment.html %}
