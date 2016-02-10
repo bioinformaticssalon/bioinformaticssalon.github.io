@@ -162,6 +162,7 @@ function show_events(raw_events){
   for (var e in events){
     var event = events[e];
     var html = render_event(event);
+    html.data('info', event);
     $('.events').append(html);
   }
 }
@@ -169,8 +170,12 @@ function show_events(raw_events){
 // returns sorted list of future events
 function filter_events(events){
   var result = [];
+  var ids = {};
   for (var e in events){
     var event = events[e];
+    if (event.status != 'confirmed'){
+      continue;
+    }
     var start = event.start.date;
     if (start == undefined){
       event.allDay = false;
@@ -180,15 +185,17 @@ function filter_events(events){
       var ymd = start.split('-');
       event.sortDate = new Date(ymd[0], ymd[1]-1, ymd[2]);
     }
-    events.sort(function(a,b){return a.sortDate - b.sortDate;});
   }
   var now = new Date();
   for (var ee in events){
     var event = events[ee];
-    if (event.sortDate > now){  // Exclude past events
+    if (event.status == 'confirmed' && event.sortDate > now && ids[event.id] == undefined){
       result.push(event);
+      ids[event.id] = event;
     }
   }
+  result.sort(function(a,b){return a.sortDate - b.sortDate;});
+  console.log(result);
   return result;
 }
 
@@ -196,7 +203,7 @@ function filter_events(events){
 
 function render_event(event){
   var box = $('<div/>').addClass('event')
-                       .append(render_date(event.sortDate), event.summary)
+                       .append(render_date_box(event.sortDate), event.summary)
 		       .click(click_cal_event)
                        .hover(show_cal_details, hide_cal_details);
 
@@ -223,8 +230,17 @@ function render_time(t){
 }
 
 var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 function render_date(date){
+  var day = DAYS[date.getDay()];
+  var ddate = date.getDate();
+  var month = MONTHS[date.getMonth()];
+  var year = date.getFullYear();
+  return day + ', ' + month + ' ' + ddate + ', ' + year;
+}
+
+function render_date_box(date){
   var day = date.getDate();
   var month = MONTHS[date.getMonth()];
   var box = $('<div/>').addClass('calendar_box').append($('<div/>').addClass('upper').text(month),
@@ -257,7 +273,8 @@ function show_cal_details(e){
   }
   var event = e.target;
   $(event).addClass('selected');
-  $('.details').css({top: event.offsetTop, left: event.offsetLeft + event.offsetWidth}).show();
+  $('.details').css({top: event.offsetTop, left: event.offsetLeft + event.offsetWidth})
+               .html(render_cal_details($(event))).show();
 }
 
 function hide_cal_details(e){
@@ -266,5 +283,31 @@ function hide_cal_details(e){
   }
   $('.event').removeClass('selected');
   $('.details').hide();
+}
+
+function render_description(text){
+  var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
+  var r = text.replace(urlPattern, '<a href="$&">$&</a>');
+  return r;
+}
+
+function render_cal_details(event){
+  var info = event.data('info');
+  var date = render_date(new Date(info.sortDate));
+  var body = [$('<div/>').addClass('title').html(info.summary),
+	      $('<div/>').addClass('date').html(date)
+	     ];
+  if (!info.allDay){
+    var time = render_event_time(info);
+    body.push($('<div/>').addClass('time').html(time));
+  }
+  if (info.location != undefined){
+    body.push($('<div/>').addClass('location').html(info.location));
+  }
+  if (info.description != undefined){
+    body.push($('<hr/>'));
+    body.push($('<div/>').addClass('description').html(render_description(info.description)));
+  }
+  return $('<div/>').append(body);
 }
 

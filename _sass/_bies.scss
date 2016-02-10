@@ -131,7 +131,7 @@ span.tag {
     display: none;
     position: absolute;
     border: 1px solid #73a7f0;
-    width: 200px;
+    width: 400px;
     margin-left: 20px;
     padding: 5px 14px;
     border-radius: 4px;
@@ -140,6 +140,8 @@ span.tag {
     box-shadow: 0px 0px 6px rgba(0, 0, 0, .7);
     -webkit-box-shadow: -0px 0px 6px rgba(0, 0, 0, .7);
     -moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, .7);
+    .title { font-size: 130%; font-weight: bold}
+    hr { margin-top: 3px; margin-bottom: 3px; border-top: solid 1px #AAA;}
 }
 .details:before{
     content: ' ';
@@ -160,6 +162,8 @@ span.tag {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
 }
+
+
 
 /* footer */
 .bies.site-footer {
