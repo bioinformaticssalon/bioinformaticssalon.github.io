@@ -7,6 +7,7 @@ function init_page(){
   $('.signup .frame2 .btn.cancel').click(signup_frame1);
   $('.signup .frame2 .btn.addme').click(on_submit);
   $('.signup .frame3 .btn.ok').click(signup_frame1);
+  $('body').click(unclick_cal_event);
   init_dna();
 }
 
@@ -231,34 +232,39 @@ function render_date(date){
   return box;
 }
 
+// selects the current event by turning its 'sticky' property on
 function click_cal_event(e){
   unclick_cal_event();
   var event = e.target;
-  $(event).data('sticky', true);
   show_cal_details(e);
+  $(event).data('sticky', true);
   return false;
 }
 
 function unclick_cal_event(e){
-  if (e == undefined){
-    var t = 'undefined';
-  } else{
-    var t = e.target;
-  }
   $('.event').removeData('sticky');
   hide_cal_details(e);
-  return false;
+}
+
+// return true if any event is stuck on, otherwise returns false
+function is_stuck(){
+  return $('.event').filter(function(i, e){ return $(e).data('sticky');}).length;
 }
 
 function show_cal_details(e){
+  if (is_stuck()){
+    return;
+  }
   var event = e.target;
   $(event).addClass('selected');
   $('.details').css({top: event.offsetTop, left: event.offsetLeft + event.offsetWidth}).show();
 }
 
 function hide_cal_details(e){
-  if (e == undefined || !$(e.target).data('sticky')){
-    $('.event').removeClass('selected');
-    $('.details').hide();
+  if (is_stuck()){
+    return;
   }
+  $('.event').removeClass('selected');
+  $('.details').hide();
 }
+
