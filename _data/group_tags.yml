@@ -1,9 +1,9 @@
 - tag: academic
   label: Academic, nonprofit, and government
-- tag: industry
-  label: Industrial
 - tag: hospital
   label: Hospital
+- tag: industry
+  label: Industry
 - tag: media
   label: Media
 - tag: meetup

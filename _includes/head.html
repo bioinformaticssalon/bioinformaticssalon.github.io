@@ -11,4 +11,7 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
   {% include bootstrap.html %}
   <script src="js/script.js"></script>
+  {% if page.calendar %}
+  <script src="js/calendar.js"></script>
+  {% endif %}
 </head>
