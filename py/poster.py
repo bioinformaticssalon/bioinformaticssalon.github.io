@@ -3,6 +3,11 @@
 # This program creates a pretty rectangle of randomized DNA bases (ATGC) and bits (01)
 # and writes it to a pdf file.
 
+# It depends on reportlab to generate PDF files (https://bitbucket.org/rptlab/reportlab)
+
+# To install reportlab, do this:
+# $pip install reportlab
+
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.pdfbase import pdfmetrics
