@@ -2,6 +2,14 @@
   url: 'http://thebiotechclub.org/'
   affiliation: Harvard
   tags: [academic]
+- name: 'Harvard Life Lab (i-Lab)'
+  url: 'http://harvardlifelab.com'
+  affiliation: Harvard
+  tags: [academic]
+- name: 'Harvard i-Lab (HBS)'
+  url: 'https://i-lab.harvard.edu'
+  affiliation: Harvard
+  tags: [academic]
 - name: 'Tufts Biomedical Business Club'
   affiliation: Tufts
   url: 'http://tuftsbiotech.com'
@@ -90,7 +98,4 @@
   affiliation: Johnson & Johnson
   url: http://www.jnjinnovation.com/team#boston-team
   tags: [industry]
-
-
-
 
