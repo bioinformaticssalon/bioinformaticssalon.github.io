@@ -13,6 +13,7 @@ computing.
 </p>
 <p>The group is open to everyone.</p>
 
+<!-- 
 <div class="panel panel-default">
   <div class="panel-heading"><h3 class="panel-title">Next Meeting</h3></div>
   <div class="panel-body">
@@ -47,6 +48,7 @@ computing.
   </div>
   </div>
 </div>
+-->
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -61,6 +63,7 @@ computing.
 </div>
 
 <h3>Upcoming Events</h3>
+<p>Stay tuned for news about our Fall 2016 series!</p>
 <p>This listing includes our own events, as well as others that may be of interest.</p>
 <div class="details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent augue justo, venenatis non tincidunt sit amet, suscipit eget ligula.</div>
 
@@ -73,14 +76,21 @@ href="https://calendar.google.com/calendar/embed?src=bv777tm2f6k9tim5m9k7jqprak@
 
 <h3>Past Events</h3>
 
-<p><div class="event"><div class="calendar_box"><div class="upper">Mar</div><div class="lower">24</div></div>
-Our <a href="https://dbmi.hms.harvard.edu/news/biomedical-informatics-entrepreneurs-salon-launched">inaugural event</a>
-was a hit!</div>
+{% for event in site.data.past_events sorted%}
+<p><div class="event col-xs-10">
+<div>
+{% if event.links %}
+<a href="{{ event.links[0]}} ">{{ event.date }}</a>:
+{% else if %}
+{{ event.date }}:
+{% endif %}
 
-<p><div class="event"><div class="calendar_box"><div class="upper">Apr</div><div class="lower">21</div></div>
-The conversation continues</div>
-
-<p><div class="event"><div class="calendar_box"><div class="upper">May</div><div class="lower">26</div></div> Devices for emotion, autism, and epilepsy</div>
+</div>
+{% for speaker in event.speakers %}
+  <li><b>{{ speaker.name }}</b>, {{ speaker.desc }}</li>
+  {% endfor %}
+</div></p>
+{% endfor %}
 
 <p style="height: 3em"></p>
 

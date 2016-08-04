@@ -1,0 +1,23 @@
+- date: 2016-3-24
+  links: ['https://dbmi.hms.harvard.edu/news/biomedical-informatics-entrepreneurs-salon-launched']
+  speakers: 
+    - name: Aman Bhandari, PhD
+      desc: Executive Director of Data Science & Insights at Merck
+    - name: John Boyce
+      desc: CEO Exosome Diagnostics, former CEO of GnuBIO
+- date: 2016-4-21
+  speakers:
+    - name: David Altshuler, M.D., Ph.D.
+      desc: Executive Vice President, Global Research and Chief Scientific Officer, at Vertex
+    - name: Luba Greenwood, JD
+      desc: Vice President, Global Mergers & Acquisitions and Business Development, at Roche
+- date: 2016-5-26
+  speakers:
+     - name: Roz Picard, Sc.D., 
+       desc: IEEE Fellow, Professor, MIT Media Lab, and founder of Empatica
+- date: 2016-6-16
+  speakers:
+     - name: Chris Colbert, MBA
+       desc: Director of Programming at Harvard i-Lab
+     - name: Dan Gebremedhin MD, MBA
+       desc: Senior Associate, Flare Capital Partners
