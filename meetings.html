@@ -76,7 +76,8 @@ href="https://calendar.google.com/calendar/embed?src=bv777tm2f6k9tim5m9k7jqprak@
 
 <h3>Past Events</h3>
 
-{% for event in site.data.past_events sorted%}
+{% assign past_events = site.data.past_events | sort: 'date' | reverse %}
+{% for event in past_events  %}
 <p><div class="event col-xs-10">
 <div>
 {% if event.links %}
