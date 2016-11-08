@@ -25,4 +25,9 @@
   speakers:
      - name: David De Graaf, PhD
        desc: CEO, Syntimmune
+- date: 2016-11-7
+  speakers:
+     - name: David Shaywitz, M.D., Ph.D.
+       desc: CMO, DNAnexus, and Visiting Scientist, Dept. Biomedical Informatics, HMS
+
 
