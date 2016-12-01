@@ -19,3 +19,6 @@ github_username:  bioinformaticssalon
 
 # Build settings
 markdown: kramdown
+
+gems:
+  - jekyll-redirect-from
